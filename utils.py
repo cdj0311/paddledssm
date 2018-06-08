@@ -1,6 +1,6 @@
 # coding:utf-8
 import logging
-import paddle
+import paddle.v2 as paddle
 
 UNK = 0
 
