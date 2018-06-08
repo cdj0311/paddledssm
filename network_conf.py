@@ -1,3 +1,4 @@
+# coding:utf-8
 from paddle import v2 as paddle
 from paddle.v2.attr import ParamAttr
 from utils import TaskType, logger, ModelType, ModelArch
