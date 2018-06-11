@@ -42,6 +42,7 @@ class Dataset(object):
         self.dev_data_csv = "/home/kesci/input/qichedashi/final_round_dev_set.csv"
         self.test_data_csv = "/home/kesci/input/qichedashi/final_round_test_set.csv"
         self.NEG = 3
+        self.train_samples = 200000
 
     def train(self):
         '''
@@ -49,12 +50,17 @@ class Dataset(object):
         '''
         logger.info("[reader] load trainset from %s" % self.train_data_csv)
         train_data = pd.read_csv(self.train_data_csv)
+        train_data = train_data.sample(frac=1).reset_index(drop=True)
         qa_pair = []
+        icount = 0
         for problem, report in zip(train_data["Problem"], train_data["Report"]):
             qa_pair.append((problem, report, 1))
             random_data = train_data.sample(frac=0.1).reset_index(drop=True)
             for i in random_data[:self.NEG]["Report"]:
                 qa_pair.append((problem, i, 0))
+            icount += 1
+            if icount > self.train_samples:
+                break
         random.shuffle(qa_pair)
         
         for line_id, line in enumerate(qa_pair):
