@@ -2,6 +2,7 @@
 import pandas as pd
 import random
 import codecs
+import re
 import jieba
 from utils import UNK, ModelType, TaskType, load_dic, sent2ids, logger, ModelType
 
