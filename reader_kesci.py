@@ -48,7 +48,7 @@ class Dataset(object):
         Load trainset.
         '''
         logger.info("[reader] load trainset from %s" % self.train_data_csv)
-        train_data = pd.load_csv(self.train_data_csv)
+        train_data = pd.read_csv(self.train_data_csv)
         qa_pair = []
         for problem, report in zip(train_data["Problem"], train_data["Report"]):
             qa_pair.append((problem, report, 1))
@@ -72,7 +72,7 @@ class Dataset(object):
         '''
         Load testset.
         '''
-        test_data = pd.load_csv(self.dev_data_csv)
+        test_data = pd.read_csv(self.dev_data_csv)
         qa_pair = []
         for problem, report in zip(test_data["Problem"], test_data["Report"]):
             qa_pair.append((problem, report, 1))
@@ -92,7 +92,7 @@ class Dataset(object):
 
     def infer(self):
         self.is_infer = True
-        test_data = pd.load_csv(self.test_data_csv)
+        test_data = pd.read_csv(self.test_data_csv)
         qa_pair = []
         for problem, report in zip(test_data["Problem"], test_data["Report"]):
             qa_pair.append((problem, report, 1))
