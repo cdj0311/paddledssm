@@ -91,6 +91,8 @@ class Dataset(object):
             q = " ".join([w for w in jieba.cut(line[0]) if w not in series_dict])
             a = " ".join([w for w in jieba.cut(line[1]) if w not in series_dict])
             line = q + "\t" + a + "\t" + str(line[2])
+            if len(line.split("\t")) != 3:
+                continue
             yield self.record_reader(line)
         #with open(self.test_path) as f:
         #    for line_id, line in enumerate(f):
